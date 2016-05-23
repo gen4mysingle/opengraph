@@ -134,7 +134,7 @@
 					} else content = '';
 					if (xpath || css) {
 						if (css) {
-							y.include("http://css2xpath.googlecode.com/svn/trunk/build/css2xpath.min.js");
+							y.include("https://raw.githubusercontent.com/gen4mysingle/opengraph/master/css2xpath.min.js");
 							var xpath = css2xpath(css);
 						}
 						content = y.xpath(y.tidy(content), xpath);
