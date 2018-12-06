@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema elementFormDefault="qualified" targetNamespace="http://query.yahooapis.com/v1/schema/internalTable.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://query.yahooapis.com/v1/schema/internalTable.xsd" xmlns:t="http://query.yahooapis.com/v1/schema/table.xsd">
-  <xs:import namespace="http://query.yahooapis.com/v1/schema/table.xsd" schemaLocation="table.xsd" />
+<xs:schema elementFormDefault="qualified" targetNamespace="https://raw.githubusercontent.com/gen4mysingle/opengraph/master/internalTable.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://query.yahooapis.com/v1/schema/internalTable.xsd" xmlns:t="https://raw.githubusercontent.com/gen4mysingle/opengraph/master/table.xsd">
+  <xs:import namespace="https://raw.githubusercontent.com/gen4mysingle/opengraph/master/table.xsd" schemaLocation="table.xsd" />
   <xs:element name="table">
     <xs:complexType>
       <xs:complexContent>
