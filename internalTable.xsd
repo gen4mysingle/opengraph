@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="http://query.yahooapis.com/v1/schema/internalTable.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://query.yahooapis.com/v1/schema/internalTable.xsd" xmlns:t="http://query.yahooapis.com/v1/schema/table.xsd">
+  <xs:import namespace="http://query.yahooapis.com/v1/schema/table.xsd" schemaLocation="table.xsd" />
+  <xs:element name="table">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="t:baseTable">
+          <xs:sequence>
+            <xs:element name="javaExecute" maxOccurs="1" minOccurs="0">
+              <xs:complexType mixed="true">
+                <xs:attribute name="class" type="xs:string" />
+                <xs:attribute name="src" use="optional" type="xs:anyURI" />
+              </xs:complexType>
+            </xs:element>
+            <xs:element ref="connects" maxOccurs="1" minOccurs="0" />
+            <xs:element name="bindings" type="bindings" maxOccurs="1" minOccurs="1" />
+            <xs:element ref="whitelist" maxOccurs="1" minOccurs="0" />
+          </xs:sequence>
+          <xs:attribute name="yahooInternal" type="xs:boolean" />
+          <xs:attribute name="hidden" type="xs:boolean" />
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="binding">
+    <xs:complexContent>
+      <xs:extension base="t:binding">
+        <xs:sequence>
+          <xs:element name="javaExecute" maxOccurs="1" minOccurs="0">
+            <xs:complexType>
+              <xs:attribute name="method" type="xs:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="ratelimit" maxOccurs="1" minOccurs="0">
+            <xs:complexType>
+              <xs:attribute name="id" type="xs:string" />
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="useProxy" type="xs:boolean" />
+        <xs:attribute name="dynamic" type="xs:boolean" />
+        <xs:attribute name="displayHost" type="xs:anyURI" />
+        <xs:attribute name="auth" use="optional" type="authEnum" />
+        <xs:attribute name="authScope" use="optional" type="xs:string" />
+        <xs:attribute name="hideUrl" type="xs:boolean" />
+        <xs:attribute name="proxy" use="optional" type="proxyEnum" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="function">
+    <xs:complexContent>
+      <xs:extension base="binding">
+        <xs:attribute name="name" type="xs:string" />
+        <xs:attribute name="type" type="t:functionEnum" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="bindings">
+    <xs:choice maxOccurs="unbounded">
+      <xs:element name="select" type="binding" maxOccurs="unbounded" minOccurs="0" />
+      <xs:element name="delete" type="binding" maxOccurs="unbounded" minOccurs="0" />
+      <xs:element name="insert" type="binding" maxOccurs="unbounded" minOccurs="0" />
+      <xs:element name="update" type="binding" maxOccurs="unbounded" minOccurs="0" />
+      <xs:element name="function" type="function" maxOccurs="unbounded" minOccurs="0" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:element name="whitelist">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="item" maxOccurs="1" minOccurs="0" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="item">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="item" />
+      </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:string" />
+      <xs:attribute name="type" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="connects">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="connect" minOccurs="1" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="connect">
+    <xs:complexType>
+      <xs:attribute name="env" type="xs:string" />
+      <xs:attribute name="yca" type="xs:string" />
+      <xs:attribute name="proxy" type="xs:string" />
+      <xs:attribute name="timeout" type="xs:int" />
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="authEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="yahooOauth" />
+      <xs:enumeration value="yahooCookie" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="proxyEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="default" />
+      <xs:enumeration value="internal" />
+      <xs:enumeration value="long30min" />
+      <xs:enumeration value="long1day" />
+      <xs:enumeration value="long7day" />
+      <xs:enumeration value="none" />
+    </xs:restriction>
+  </xs:simpleType>
+  
+</xs:schema>
